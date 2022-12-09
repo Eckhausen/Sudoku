@@ -4,9 +4,10 @@ import java.util.*;
 
 
 public class Solver implements SudokuSolver {
+    private int[][] matrix;
 
     public Solver(){
-
+        
     }
 
     @Override
@@ -23,19 +24,21 @@ public class Solver implements SudokuSolver {
 
     @Override
     public void set(int row, int col, int digit) {
-        // TODO Auto-generated method stub
+        if(digit)
+        matrix[row][col] = digit;
         
     }
 
     @Override
     public void remove(int row, int col) {
-        // TODO Auto-generated method stub
+        matrix[row][col] = 0;
         
     }
 
     @Override
     public void clear() {
         Arrays.fill(getMatrix(), 0);
+
 
        /** int rows = matrix.length;
         int cols = matrix[0].length;
@@ -50,14 +53,12 @@ public class Solver implements SudokuSolver {
 
     @Override
     public void setMatrix(int[][] matrix) {
-        matrix = new int[9][9];
-        
+        matrix = new int[9][9]; 
     }
 
     @Override
     public int[][] getMatrix() {
-        // TODO Auto-generated method stub
-        return null;
+        return matrix;
     } 
     
 

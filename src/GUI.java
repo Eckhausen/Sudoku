@@ -6,6 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
+
+    private int[][] exampleSudokuGrid = {
+        {0, 0, 8, 0, 0, 9, 0, 6, 2},
+        {0, 0, 0, 0, 0, 0, 0, 0, 5},
+        {1, 0, 2, 5, 0, 0, 0, 0, 0},
+        {0, 0, 0, 2, 1, 0, 0, 9, 0},
+        {0, 5, 0, 0, 0, 0, 6, 0, 0},
+        {6, 0, 0, 0, 0, 0, 0, 2, 8},
+        {4, 1, 0, 6, 0, 8, 0, 0, 0},
+        {8, 6, 0, 0, 3, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0, 0, 4, 0, 0}
+    };
     
     public GUI(Solver SudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
@@ -36,7 +48,7 @@ public class GUI extends JFrame {
             }
         }
         
-        JButton solveButton = new JButton("Solve"); //Ej implementerad
+        JButton solveButton = new JButton("Solve"); //Ej implementerad, kan just nu mata in fel värden.
         solveButton.addActionListener(new ActionListener() {
             
             @Override
