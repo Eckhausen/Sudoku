@@ -1,6 +1,6 @@
 package src;
 
-import java.util.Arrays;
+import java.util.*;
 
 
 public class Solver implements SudokuSolver {
