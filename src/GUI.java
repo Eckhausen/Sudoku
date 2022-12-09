@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     
-    public GUI() { //Solver SudokuSolver
+    public GUI(Solver SudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
     }
     
@@ -36,8 +36,7 @@ public class GUI extends JFrame {
             }
         }
         
-
-        JButton solveButton = new JButton("Solve");
+        JButton solveButton = new JButton("Solve"); //Ej implementerad
         solveButton.addActionListener(new ActionListener() {
             
             @Override
@@ -48,7 +47,7 @@ public class GUI extends JFrame {
         });
         
         
-        JButton clearButton = new JButton("Clear");
+        JButton clearButton = new JButton("Clear"); //Ej implementerad
         clearButton.addActionListener(new ActionListener() {
             
             @Override
@@ -69,8 +68,8 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        //Solver s = new Solver();
-        GUI GUI = new GUI();
+        Solver s = new Solver();
+        GUI GUI = new GUI(s);
         GUI.setVisible(true);
         
     }
