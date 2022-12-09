@@ -65,6 +65,7 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Solvern set matrix
                 //Sen uppdatera panelen med nya brädet.
+                
                 System.out.println("Clear");
             }
             
