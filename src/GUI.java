@@ -6,24 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
-
-    private int[][] exampleSudokuGrid = {
-        {0, 0, 8, 0, 0, 9, 0, 6, 2},
-        {0, 0, 0, 0, 0, 0, 0, 0, 5},
-        {1, 0, 2, 5, 0, 0, 0, 0, 0},
-        {0, 0, 0, 2, 1, 0, 0, 9, 0},
-        {0, 5, 0, 0, 0, 0, 6, 0, 0},
-        {6, 0, 0, 0, 0, 0, 0, 2, 8},
-        {4, 1, 0, 6, 0, 8, 0, 0, 0},
-        {8, 6, 0, 0, 3, 0, 1, 0, 0},
-        {0, 0, 0, 0, 0, 0, 4, 0, 0}
+    static int[][] puzzle = {
+        {5, 3, 0, 0, 7, 0, 0, 0, 0},
+        {6, 0, 0, 1, 9, 5, 0, 0, 0},
+        {0, 9, 8, 0, 0, 0, 0, 6, 0},
+        {8, 0, 0, 0, 6, 0, 0, 0, 3},
+        {4, 0, 0, 8, 0, 3, 0, 0, 1},
+        {7, 0, 0, 0, 2, 0, 0, 0, 6},
+        {0, 6, 0, 0, 0, 0, 2, 8, 0},
+        {0, 0, 0, 4, 1, 9, 0, 0, 5},
+        {0, 0, 0, 0, 8, 0, 0, 7, 9}
     };
+    public JTextField[][] matrix;
     
     public GUI(Solver SudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
     }
     
-    private void createWindow(String title, int width, int height) {
+    public void createWindow(String title, int width, int height) {
         setTitle(title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, height);
@@ -31,11 +31,10 @@ public class GUI extends JFrame {
         JPanel matrixPanel = new JPanel();
         matrixPanel.setLayout(new GridLayout(9,9));
         JTextField[][] matrix = new JTextField[9][9];
-        
+        this.matrix = matrix;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 matrix[i][j] = new JTextField(1);
-                
                 matrix[i][j].setFont(new Font("SansSerif", Font.BOLD, 30));
                 matrix[i][j].setHorizontalAlignment(JTextField.CENTER);
                 
@@ -70,19 +69,28 @@ public class GUI extends JFrame {
             }
             
         });
-
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(solveButton);
         buttonPanel.add(clearButton);
         
         add(matrixPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
-    }
 
+    }
+    public void addDigits(int[][] newMatrix){
+        for(int row = 0; row < 9; row++){
+            for(int col = 0; col < 9; col++){
+                matrix[row][col].setText(String.valueOf(puzzle[row][col]));
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         Solver s = new Solver();
         GUI GUI = new GUI(s);
+        s.setMatrix(puzzle);
+        GUI.addDigits(puzzle);
         GUI.setVisible(true);
-        
     }
 }
