@@ -24,7 +24,9 @@ public class Solver implements SudokuSolver {
 
     @Override
     public void set(int row, int col, int digit) {
-        if(digit)
+        if(digit > 9 || digit < 1) throw new IllegalArgumentException("Invalid digit, should be 1-9");  
+        if(row > 9 || row < 1) throw new IllegalArgumentException("Invalid row");
+        if(col > 9 || col < 1) throw new IllegalArgumentException("Invalid col");
         matrix[row][col] = digit;
         
     }
