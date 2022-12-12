@@ -12,15 +12,50 @@ public class Solver implements SudokuSolver {
 
     @Override
     public boolean solve() {    
-        // TODO Auto-generated method stub
+        return solveSudoku(0, 0);
+    }
+
+    private boolean solveSudoku(int row, int col){
+
         return false;
     }
 
     @Override
     public boolean legal(int digit, int row, int col) { 
-        // TODO Auto-generated method stub
-        return false;
+        for(int i = 0; i < 9; i++){ //Kolla horisontellt
+            if(i != col){
+                if(matrix[row][i] == digit){
+                    return false;
+                }
+            }
+        }
+        
+        for(int i = 0; i < 9; i++){ //Kolla vertikalt
+            if(i != row){
+                if(matrix[i][col] == digit){
+                    return false;
+                }
+            }
+        }
+
+        int startRow = row - (row % 3); //?
+        int startCol = col - (col % 3); //?
+
+        row = row % 3; //?
+        col = col % 3; //?
+
+        for(int i = 3; i < 3; i++){ //Kollar inom samma region.
+            for(int j = 3; j < 3; j++){
+                if(i != row || j != col){
+                    if(matrix[startRow + i][startCol + j] == digit){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
+
 
     /**
 	 * Puts digit in the box row, col.

@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+
 
 public class GUI extends JFrame {
     static int[][] puzzle = {
@@ -34,15 +38,25 @@ public class GUI extends JFrame {
         this.matrix = matrix;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                matrix[i][j] = new JTextField(1);
-                matrix[i][j].setFont(new Font("SansSerif", Font.BOLD, 30));
-                matrix[i][j].setHorizontalAlignment(JTextField.CENTER);
+                JTextField tf = new JTextField(1);
+                tf.setFont(new Font("SansSerif", Font.BOLD, 30));
+                tf.setHorizontalAlignment(JTextField.CENTER);
                 
                 if ((i / 3 + j / 3) % 2 == 0) {
-                    matrix[i][j].setBackground(Color.decode("#779556"));
+                    tf.setBackground(Color.decode("#779556"));
                 } else {
-                    matrix[i][j].setBackground(Color.decode("#ebecd0"));
+                    tf.setBackground(Color.decode("#ebecd0"));
                 }
+
+                tf.addKeyListener(new KeyAdapter(){
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        if (tf.getText().length()>=1){
+                            e.consume();
+                        }
+                    }
+                });
+                matrix[i][j] = tf;
                 matrixPanel.add(matrix[i][j]);
             }
         }
@@ -57,12 +71,12 @@ public class GUI extends JFrame {
             }
         });
         
-        
         JButton clearButton = new JButton("Clear"); //Ej implementerad
         clearButton.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 //Solvern set matrix
                 //Sen uppdatera panelen med nya brädet.
                 
@@ -83,6 +97,7 @@ public class GUI extends JFrame {
         for(int row = 0; row < 9; row++){
             for(int col = 0; col < 9; col++){
                 matrix[row][col].setText(String.valueOf(puzzle[row][col]));
+                if(puzzle[row][col] == 0) matrix[row][col].setText("");
             }
         }
     }
