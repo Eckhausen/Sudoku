@@ -16,20 +16,36 @@ public class Solver implements SudokuSolver {
     }
 
     private boolean sourceSudoku(int row, int col){
-        for(int rows = 0; rows < 9; rows++){
-            for(int cols = 0; cols < 9; cols++){
-                if(matrix[rows][cols] == 0){ //Om platsen är tom.
-                    for(int value = 1; value <= 9; value++){ //Testa alla värden 1-9
-                        if(legal(value, rows, cols)){ 
-                            matrix[rows][cols] = value; //Om laglig sätt nya värdet. 
-                        }
-                        matrix[rows][cols] = 0; //Annars sätt värdet till 0. BACKTRACK
+        if(row < matrix.length && col < matrix.length){
+            return true;
+        } else {
+        if(matrix[row][col] == 0){ //Om platsen är tom.
+            for(int value = 1; value <= 9; value++){ //Testa alla värden 1-9
+                if(legal(value, row, col)){ 
+                    matrix[row][col] = value; //Om laglig sätt nya värdet.
+                    if(col < 9){ 
+                        return sourceSudoku(row, col+1); //Kan va fel här, fråga evelina.
+                    } else if(row < 9) {
+                        return sourceSudoku(row + 1, 0);
+                    } else {
+                        return true;
                     }
-                    return false; //Inget värde kunde placeras på platsen. 
                 }
             }
+            matrix[row][col] = 0; 
+            return false; //Inget värde kunde placeras på platsen. 
+        } else {
+            if(legal(matrix[row][col], row, col)){
+                if(col < 9){
+                    return sourceSudoku(row, col+1);
+                } else {
+                    return sourceSudoku(row+1, 0);
+                }
+            } else {
+                return false;
+            }
+        } 
         }
-        return true; //Pusslet är fullt och en lösning kunde hittas.
     }
 
     @Override
