@@ -12,12 +12,24 @@ public class Solver implements SudokuSolver {
 
     @Override
     public boolean solve() {    
-        return solveSudoku(0, 0);
+        return sourceSudoku(0, 0);
     }
 
-    private boolean solveSudoku(int row, int col){
-
-        return false;
+    private boolean sourceSudoku(int row, int col){
+        for(int rows = 0; rows < 9; rows++){
+            for(int cols = 0; cols < 9; cols++){
+                if(matrix[rows][cols] == 0){ //Om platsen är tom.
+                    for(int value = 1; value <= 9; value++){ //Testa alla värden 1-9
+                        if(legal(value, rows, cols)){ 
+                            matrix[rows][cols] = value; //Om laglig sätt nya värdet. 
+                        }
+                        matrix[rows][cols] = 0; //Annars sätt värdet till 0. BACKTRACK
+                    }
+                    return false; //Inget värde kunde placeras på platsen. 
+                }
+            }
+        }
+        return true; //Pusslet är fullt och en lösning kunde hittas.
     }
 
     @Override
