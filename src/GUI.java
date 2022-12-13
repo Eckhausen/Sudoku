@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import src.Solver;
+
 
 
 public class GUI extends JFrame {
     private Solver s;
-    private int[][] tempMatrix; //Denna vi uppdaterar hela tiden.
+    static int[][] tempMatrix; //Denna vi uppdaterar hela tiden.
     private JTextField[][] matrix;
     
     private int[][] examplePuzzle = {
@@ -106,6 +106,7 @@ public class GUI extends JFrame {
         
         add(matrixPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
+        setVisible(true);
 
     }
     public void updateWindow(JTextField[][] newMatrix){
@@ -120,11 +121,4 @@ public class GUI extends JFrame {
         }
     }
     
-    public static void main(String[] args) {
-        Solver s = new Solver();
-        GUI GUI = new GUI(s);
-        
-        
-        GUI.setVisible(true);
-    }
 }
