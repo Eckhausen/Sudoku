@@ -89,8 +89,7 @@ public class GUI extends JFrame {
                     updateWindow(matrix);
                 } else if(shouldBeSolved){
                     JOptionPane.showMessageDialog(null, "A solution could not be found!");
-                }
-                System.out.println("Solve");       
+                }      
             }
         });
         
