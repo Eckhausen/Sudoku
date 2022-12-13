@@ -94,7 +94,7 @@ public class GUI extends JFrame {
             }
         });
         
-        JButton clearButton = new JButton("Clear"); //Ej implementerad
+        JButton clearButton = new JButton("Clear"); 
         clearButton.addActionListener(new ActionListener() {
             
             @Override
