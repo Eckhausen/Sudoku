@@ -29,7 +29,6 @@ public class GUI extends JFrame {
     public GUI(Solver sudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
         this.s = sudokuSolver;
-
     }
     
     public void createWindow(String title, int width, int height) {
@@ -47,12 +46,14 @@ public class GUI extends JFrame {
                 tf.setFont(new Font("SansSerif", Font.BOLD, 30));
                 tf.setHorizontalAlignment(JTextField.CENTER);
                 
+                //Change tf backgrounds according to region.
                 if ((i / 3 + j / 3) % 2 == 0) {
                     tf.setBackground(Color.decode("#779556"));
                 } else {
                     tf.setBackground(Color.decode("#ebecd0"));
                 }
 
+                //Prevent more than one character.
                 tf.addKeyListener(new KeyAdapter(){
                     @Override
                     public void keyTyped(KeyEvent e) {
@@ -66,9 +67,8 @@ public class GUI extends JFrame {
             }
         }
         
-        JButton solveButton = new JButton("Solve"); //Ej implementerad, kan just nu mata in fel värden.
+        JButton solveButton = new JButton("Solve");
         solveButton.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean shouldBeSolved = true;
