@@ -15,18 +15,22 @@ public class Solver implements SudokuSolver {
     }
 
     private boolean sourceSudoku(int row, int col){
-        if(row < matrix.length && col < matrix.length){
-            return true;
+        if(row >= matrix.length || col >= matrix.length){ //Kanske && som innan? Den får panik så fort det är ett tal på sista kolumnen
+            return true; 
         } else {
         if(matrix[row][col] == 0){ //Om platsen är tom.
             for(int value = 1; value <= 9; value++){ //Testa alla värden 1-9
                 if(legal(value, row, col)){ 
                     matrix[row][col] = value; //Om laglig sätt nya värdet.
-                    if(col < 9){ 
-                        return sourceSudoku(row, col+1); //Kan va fel här, fråga evelina.
-                    } else if(row < 9) {
-                        return sourceSudoku(row + 1, 0);
-                    } else {
+                    if(col<matrix.length-1){
+                        if (sourceSudoku(row, col+1)){
+                            return true;
+                        }
+                    } else if (row<matrix[0].length-1){ // Den funkar nu om jag skriver in egna värden. MEN exempel matrisen funkar bara halvvägs neråt
+                        if(sourceSudoku(row+1, 0)){ 
+                            return true;
+                        }
+                    } else{
                         return true;
                     }
                 }
@@ -35,12 +39,12 @@ public class Solver implements SudokuSolver {
             return false; //Inget värde kunde placeras på platsen. 
         } else {
             if(legal(matrix[row][col], row, col)){
-                if(col < 9){
+                if(col<matrix.length-1){ 
                     return sourceSudoku(row, col+1);
                 } else {
                     return sourceSudoku(row+1, 0);
                 }
-            } else {
+            } else { 
                 return false;
             }
         } 
