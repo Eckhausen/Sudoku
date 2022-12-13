@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 public class TestSolver {
 
     @BeforeEach
+    @AfterEach
+    @Test
     void solve(){
 
     }
-
-    @AfterEach
+    @Test
     void legal(){
       
     }
@@ -36,12 +37,6 @@ public class TestSolver {
 
     @Test
     void setMatrix(){
-
-        // for(int i = 0; i < rows; i++){
-        //     for(int j = 0; j < cols; j++){
-        //         System.out.println(matrix[i][j]);
-        //     }
-        // }
 
     }
 

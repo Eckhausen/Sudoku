@@ -6,8 +6,6 @@ public class Solver implements SudokuSolver {
     public Solver(){
         matrix = new int[9][9];
     }
-
-
     
     /** 
      * Solves the Sudoku puzzle.
@@ -15,18 +13,18 @@ public class Solver implements SudokuSolver {
      */
     @Override
     public boolean solve() {    
-        return sourceSudoku(0, 0);
+        return sourceSudoku(0, 0); //Basfall. 
     }
 
     private boolean sourceSudoku(int row, int col){
-        if(row >= matrix.length || col >= matrix.length){ 
+        if(row >= matrix.length || col >= matrix.length){ //Ifall vi hamnar utanför intervallet utan problem så är det löst.
             return true; 
         } else {
         if(matrix[row][col] == 0){ //Om platsen är tom.
             for(int value = 1; value <= 9; value++){ //Testa alla värden 1-9
                 if(legal(value, row, col)){ 
                     matrix[row][col] = value; //Om laglig sätt nya värdet.
-                    if(col<matrix.length-1){
+                    if(col<matrix.length-1){ 
                         if (sourceSudoku(row, col+1)){
                             return true;
                         }
@@ -39,9 +37,9 @@ public class Solver implements SudokuSolver {
                     }
                 }
             }
-            matrix[row][col] = 0; 
-            return false; //Inget värde kunde placeras på platsen. 
-        } else {
+            matrix[row][col] = 0; //Inget värde kunde placeras på platsen. 
+            return false; 
+        } else { //Om platsen INTE är tom.
             if(legal(matrix[row][col], row, col)){
                 if(col<matrix.length-1){ 
                     return sourceSudoku(row, col+1);
@@ -82,10 +80,10 @@ public class Solver implements SudokuSolver {
         }
 
         int startRow = row - (row % 3); //Vart börjar vår region
-        int startCol = col - (col % 3); //-''-
+        int startCol = col - (col % 3); 
 
         row = row % 3; //Position vi kollar just nu
-        col = col % 3; //Position vi kollar just nu.
+        col = col % 3; 
 
         for(int i = 0; i < 3; i++){ //Kollar inom samma region.
             for(int j = 0; j < 3; j++){
@@ -156,10 +154,10 @@ public class Solver implements SudokuSolver {
 	 */
     @Override
     public void setMatrix(int[][] matrix) {
-        if (matrix == null || matrix.length != 9 || matrix[0].length != 9) {
+        if (matrix == null || matrix.length != 9 || matrix[0].length != 9) { //Kollar dimensionerna
             throw new IllegalArgumentException("Invalid matrix.");
         }
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < 8; i++){ //Kollar så att alla värden är giltiga.
             for(int j = 0; j < 8; j++){
                 if(matrix[i][j] < 0 || matrix[i][j] > 9){
                     System.out.println("ERROR at \nRow: " + i + "\n" + "Col: " + j);
