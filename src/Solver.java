@@ -1,6 +1,5 @@
 package src;
 
-import java.util.*;
 
 
 public class Solver implements SudokuSolver {

@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 public class GUI extends JFrame {
     private Solver s;
-    static int[][] tempMatrix; //Denna vi uppdaterar hela tiden.
+    private int[][] tempMatrix; //Denna vi uppdaterar hela tiden.
     private JTextField[][] matrix;
     
     private int[][] examplePuzzle = {
@@ -26,8 +26,9 @@ public class GUI extends JFrame {
         {0, 0, 0, 0, 8, 0, 0, 7, 9}
     };
     
-    public GUI(Solver SudokuSolver) { 
+    public GUI(Solver sudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
+        this.s = sudokuSolver;
 
     }
     
@@ -70,7 +71,7 @@ public class GUI extends JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                //SudokuSolver 
+                
                 System.out.println("Solve");       
             }
         });
@@ -83,7 +84,6 @@ public class GUI extends JFrame {
                 s.clear();
                 tempMatrix = s.getMatrix();
                 updateWindow(matrix);
-                System.out.println("Clear");
             }
             
         });
