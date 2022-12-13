@@ -66,11 +66,11 @@ public class Solver implements SudokuSolver {
             }
         }
 
-        int startRow = row - (row % 3); //?
-        int startCol = col - (col % 3); //?
+        int startRow = row - (row % 3); //Vart börjar vår region
+        int startCol = col - (col % 3); //-''-
 
-        row = row % 3; //?
-        col = col % 3; //?
+        row = row % 3; //Position vi kollar just nu
+        col = col % 3; //Position vi kollar just nu.
 
         for(int i = 3; i < 3; i++){ //Kollar inom samma region.
             for(int j = 3; j < 3; j++){
