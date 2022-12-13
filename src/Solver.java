@@ -1,7 +1,5 @@
 package src;
 
-
-
 public class Solver implements SudokuSolver {
     private int[][] matrix;
 
