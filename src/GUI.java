@@ -6,11 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+import src.Solver;
 
 
 public class GUI extends JFrame {
-    static int[][] puzzle = {
+    private Solver s;
+    private int[][] tempMatrix; //Denna vi uppdaterar hela tiden.
+    private JTextField[][] matrix;
+    
+    private int[][] examplePuzzle = {
         {5, 3, 0, 0, 7, 0, 0, 0, 0},
         {6, 0, 0, 1, 9, 5, 0, 0, 0},
         {0, 9, 8, 0, 0, 0, 0, 6, 0},
@@ -21,10 +25,10 @@ public class GUI extends JFrame {
         {0, 0, 0, 4, 1, 9, 0, 0, 5},
         {0, 0, 0, 0, 8, 0, 0, 7, 9}
     };
-    public JTextField[][] matrix;
     
     public GUI(Solver SudokuSolver) { 
         createWindow("SudokuSolver", 500, 500);
+
     }
     
     public void createWindow(String title, int width, int height) {
@@ -76,16 +80,27 @@ public class GUI extends JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //Solvern set matrix
-                //Sen uppdatera panelen med nya brädet.
-                
+                s.clear();
+                tempMatrix = s.getMatrix();
+                updateWindow(matrix);
                 System.out.println("Clear");
             }
             
         });
-        
+
+        JButton setExampleMatrix = new JButton("Set example Matrix");
+        setExampleMatrix.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tempMatrix = examplePuzzle;
+                updateWindow(matrix);
+            }
+            
+        });
+
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(setExampleMatrix);
         buttonPanel.add(solveButton);
         buttonPanel.add(clearButton);
         
@@ -93,11 +108,14 @@ public class GUI extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
 
     }
-    public void addDigits(int[][] newMatrix){
+    public void updateWindow(JTextField[][] newMatrix){
         for(int row = 0; row < 9; row++){
             for(int col = 0; col < 9; col++){
-                matrix[row][col].setText(String.valueOf(puzzle[row][col]));
-                if(puzzle[row][col] == 0) matrix[row][col].setText("");
+                if(tempMatrix[row][col] == 0){
+                    matrix[row][col].setText(null);
+                } else {
+                    matrix[row][col].setText(Integer.toString(tempMatrix[row][col]));
+                }
             }
         }
     }
@@ -105,8 +123,8 @@ public class GUI extends JFrame {
     public static void main(String[] args) {
         Solver s = new Solver();
         GUI GUI = new GUI(s);
-        s.setMatrix(puzzle);
-        GUI.addDigits(puzzle);
+        
+        
         GUI.setVisible(true);
     }
 }
