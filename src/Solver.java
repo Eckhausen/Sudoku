@@ -75,8 +75,8 @@ public class Solver implements SudokuSolver {
         row = row % 3; //Position vi kollar just nu
         col = col % 3; //Position vi kollar just nu.
 
-        for(int i = 3; i < 3; i++){ //Kollar inom samma region.
-            for(int j = 3; j < 3; j++){
+        for(int i = 0; i < 3; i++){ //Kollar inom samma region.
+            for(int j = 0; j < 3; j++){
                 if(i != row || j != col){
                     if(matrix[startRow + i][startCol + j] == digit){
                         return false;
