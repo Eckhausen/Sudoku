@@ -113,8 +113,8 @@ public class Solver implements SudokuSolver {
 	 */
     @Override
     public void remove(int row, int col) {
-        if(row > 8 || row < 0) throw new IllegalArgumentException("Invalid row");
-        if(col > 8 || col < 0) throw new IllegalArgumentException("Invalid column");
+        if(row < 0 || row > 9) throw new IllegalArgumentException("Invalid row");
+        if(col < 0 || col > 9) throw new IllegalArgumentException("Invalid column");
         matrix[row][col] = 0;
         
     }

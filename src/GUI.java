@@ -79,7 +79,7 @@ public class GUI extends JFrame {
                         } else if(allowedValue(matrix[row][col].getText())){
                             s.set(row, col, Integer.parseInt(matrix[row][col].getText()));
                         } else {
-                            JOptionPane.showMessageDialog(null, "Illegal character has been identified at: " + "Row: " + row + " Col: " + col);
+                            JOptionPane.showMessageDialog(null, "Illegal character has been identified at:\n" + "Row: " + row + "\n" + "Col: " + col);
                             shouldBeSolved = false;
                         }
                     }
