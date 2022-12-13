@@ -7,6 +7,12 @@ public class Solver implements SudokuSolver {
         matrix = new int[9][9];
     }
 
+
+    
+    /** 
+     * Solves the Sudoku puzzle.
+     * @return boolean
+     */
     @Override
     public boolean solve() {    
         return sourceSudoku(0, 0);
@@ -49,6 +55,14 @@ public class Solver implements SudokuSolver {
         }
     }
 
+    
+    /** 
+     * Checks if the current digit on the specified row, column is legal.
+     * @param digit Specify digit
+     * @param row Specify row
+     * @param col Specify column
+     * @return boolean
+     */
     @Override
     public boolean legal(int digit, int row, int col) { 
         for(int i = 0; i < 9; i++){ //Kolla horisontellt
@@ -92,7 +106,7 @@ public class Solver implements SudokuSolver {
 	 * @param row   The row
 	 * @param col   The column
 	 * @param digit The digit to insert in box row, col
-	 * @throws IllegalArgumentException if row, col or digit is outside the range
+	 * @throws IllegalArgumentException If row, col or digit is outside the range
 	 *                                  [0..9]
 	 */
     @Override
@@ -109,8 +123,7 @@ public class Solver implements SudokuSolver {
 	 * 
 	 * @param row   The row
 	 * @param col   The column
-	 * @param digit The digit to insert in box row, col
-	 * @throws IllegalArgumentException if row, col or digit is outside the range
+	 * @throws IllegalArgumentException if row, col is outside the range
 	 *                                  [0..9]
 	 */
     @Override
@@ -122,7 +135,7 @@ public class Solver implements SudokuSolver {
     }
 
     /**
-     * Empties the grid.
+     * Empties the matrix.
       */
     @Override
     public void clear() {
@@ -135,9 +148,9 @@ public class Solver implements SudokuSolver {
     }
 
     /**
-	 * Fills the grid with the digits in m. The digit 0 represents an empty box.
+	 * Fills the puzzle with the digits in matrix. The digit 0 represents an empty box.
 	 * 
-	 * @param m the matrix with the digits to insert
+	 * @param matrix the matrix with the digits to insert
 	 * @throws IllegalArgumentException if m has the wrong dimension or contains
 	 *                                  values outside the range [0..9]
 	 */
@@ -159,7 +172,7 @@ public class Solver implements SudokuSolver {
 
     /**
 	 * Returns a matrix with the current values.
-	 * 
+	 *
 	 * @return integer matrix with current values
 	 */
     @Override
