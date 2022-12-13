@@ -71,7 +71,25 @@ public class GUI extends JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                boolean shouldBeSolved = true;
+                for(int row = 0; row < 9; row++){
+                    for(int col = 0; col < 9; col++){
+                        if(matrix[row][col].getText().isEmpty()){
+                            s.set(row, col, 0);
+                        } else if(allowedValue(matrix[row][col].getText())){
+                            s.set(row, col, Integer.parseInt(matrix[row][col].getText()));
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Illegal character has been identified at: " + "Row: " + row + " Col: " + col);
+                            shouldBeSolved = false;
+                        }
+                    }
+                }
+                if(s.solve() && shouldBeSolved){
+                    tempMatrix = s.getMatrix();
+                    updateWindow(matrix);
+                } else if(shouldBeSolved){
+                    JOptionPane.showMessageDialog(null, "A solution could not be found!");
+                }
                 System.out.println("Solve");       
             }
         });
@@ -120,5 +138,11 @@ public class GUI extends JFrame {
             }
         }
     }
-    
+    protected boolean allowedValue(String text) {
+        if(text.matches ("1") || text.matches("2") || text.matches("3") || text.matches("4") || 
+         text.matches("5") || text.matches("6") || text.matches("7") || text.matches("8") || text.matches ("9")){
+             return true;
+         }
+         return false;
+    }
 }

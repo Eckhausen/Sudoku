@@ -95,9 +95,9 @@ public class Solver implements SudokuSolver {
 	 */
     @Override
     public void set(int row, int col, int digit) {
-        if(row > 8 || row < 0) throw new IllegalArgumentException("Invalid row");
-        if(col > 8 || col < 0) throw new IllegalArgumentException("Invalid column");
-        if(digit > 9 || digit < 1) throw new IllegalArgumentException("Invalid digit, should be 1-9");  
+        if(row < 0 || row > 9) throw new IllegalArgumentException("Invalid row");
+        if(col < 0 || col > 9) throw new IllegalArgumentException("Invalid column");
+        if(digit < 0 || digit > 9) throw new IllegalArgumentException("Invalid digit, should be 1-9");  
         matrix[row][col] = digit;
         
     }
