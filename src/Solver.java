@@ -15,7 +15,7 @@ public class Solver implements SudokuSolver {
     }
 
     private boolean sourceSudoku(int row, int col){
-        if(row >= matrix.length || col >= matrix.length){ //Kanske && som innan? Den får panik så fort det är ett tal på sista kolumnen
+        if(row >= matrix.length || col >= matrix.length){ 
             return true; 
         } else {
         if(matrix[row][col] == 0){ //Om platsen är tom.
@@ -26,7 +26,7 @@ public class Solver implements SudokuSolver {
                         if (sourceSudoku(row, col+1)){
                             return true;
                         }
-                    } else if (row<matrix[0].length-1){ // Den funkar nu om jag skriver in egna värden. MEN exempel matrisen funkar bara halvvägs neråt
+                    } else if (row<matrix[0].length-1){ 
                         if(sourceSudoku(row+1, 0)){ 
                             return true;
                         }
