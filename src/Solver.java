@@ -32,6 +32,7 @@ public class Solver implements SudokuSolver {
                         if(sourceSudoku(row+1, 0)){ 
                             return true;
                         }
+                        
                     } else{
                         return true;
                     }
@@ -75,8 +76,6 @@ public class Solver implements SudokuSolver {
                 }
             }
         }
-        
-
         int startRow = row - (row % 3); //Vart börjar vår region
         int startCol = col - (col % 3); 
 
@@ -173,6 +172,7 @@ public class Solver implements SudokuSolver {
 	 */
     @Override
     public int[][] getMatrix() {
+        //for loopar skicka kopian ist för org.
         return matrix;
     } 
     
