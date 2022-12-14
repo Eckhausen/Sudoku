@@ -69,15 +69,13 @@ public class Solver implements SudokuSolver {
                     return false;
                 }
             }
-        }
-        
-        for(int i = 0; i < 9; i++){ //Kolla vertikalt
-            if(i != row){
+            if(i != row){ //Kolla vertikalt
                 if(matrix[i][col] == digit){
                     return false;
                 }
             }
         }
+        
 
         int startRow = row - (row % 3); //Vart börjar vår region
         int startCol = col - (col % 3); 
